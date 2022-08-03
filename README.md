@@ -164,3 +164,51 @@ Response
 }
 
 ```
+### GraphQL Query Syntax
+
+  - GraphQL query will have 2 main components 1.Operation Type , 2. Operation Name.
+  
+  - Operation type has 3 possible values. 
+    
+     - query
+     - mutuation
+     - subscription
+     
+  - OperationName is a meaningful name of ther operation of the query.
+
+  **It is always good practice to use OperationName and OperationType while defining GraphQL queries**
+  
+  In below example **query** keyword is OperationType indicate its a fetch operation.
+  
+  **UserNameAndPrivilageRoles** is OperationName which is logical name of the query.
+  
+  
+```
+Request
+
+query UserNameAndPrivilageRoles{
+   user{
+      name
+      privilages {
+        role
+      }
+   }
+}
+
+Response
+
+{
+  "data": {
+    "user" : {
+      "name" : "Mark",
+       "privilages" : [
+         {"role" : "Developer"},
+         {"role" : "Admin"},
+       ]
+    }
+  }
+}
+```
+
+
+   

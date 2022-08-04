@@ -174,7 +174,7 @@ Response
      - mutuation
      - subscription
      
-  - OperationName is a meaningful name of ther operation of the query.
+  - OperationName is a meaningful name of their operation of the query.
 
   **It is always good practice to use OperationName and OperationType while defining GraphQL queries**
   
@@ -210,5 +210,94 @@ Response
 }
 ```
 
+### Variables
 
+   - Variables will help us to pass dynamic arguments to GraphQL query.
+   
+   - This will help the client application code to modify/manipulate GraphQL query directly.
+
+   - We can able to set default values to any variable we are defining as part of the query.
+
+```
+
+Request
+
+query CarAndModelVariants($model: Model){
+  car(moderl: $model){
+    name
+    variants{
+      name
+    }
+  }
+}
+
+{
+ "model" : "Civic"
+}
+
+Response
+
+{
+ "data" : {
+   "car" : {
+    "name" : Honda,
+     "variants" : [
+       {"name" : "LX"},
+       {"name" : "DX"}
+     ]
+   }
+ }
+}
+
+```
+
+### Directives
+
+   - Directives are attached to a field or fragments of a Query which controls execution of query on the server.
+
+   - It will help us control which field should be include/excluded or skipped in the query definition.
+
+   - GraphQL will support 2 directive out of the box.
+   
+      - **@include(if: Boolean)** Only include this field in the result if the argument is true.
+      
+      - **@skip(if: Boolean)** Skip this filed if the argument is true.
+
+### Mutuations
+
+   - Mutuations help us to modify server side data. With help of mutuation we can able to modify server side data
+     and get the modified data. Also it will allow us to get the specific portion of the modified data after the modification.
+     
+   - 
+     
+```
+Request
+
+mutuation CreateCommentForBlog($blog: Blog!, $comment: Comment!){
+  CreateComment(blog: $blog, comment: $comment){
+     comment
+     like
+  }
+}
+
+{
+  "blog" : "Cook Recipie",
+  "comment" : {
+      "comment" : "This blog is useful",
+      "like"    : "Yes"
+  }
+}
+
+Response
+
+{
+ "data" : {
+   "CreateComment" :{
+      "comment" : "This blog is useful",
+       "like"   : "Yes"
+   }
+ }
+}
+
+```
    

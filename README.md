@@ -301,3 +301,27 @@ Response
 
 ```
    
+### Schemas and Types
+
+  - A GraphQL service is defined by set of types which describes set of possible data it can service.
+    It act as a contract between client and GraphQL service.
+    
+  - When any client queries aganist GraphQL service request is validated aganist the schema and its executed.
+  
+  - GraphQL supports different types of its own. In which Object type is basic one.
+  
+```
+
+type Character{
+  name: String!
+  appearsIn: [Episode!]!
+}
+
+ # In this example **Character** is a GraphQL object type which has 2 fileds.
+ 
+ # **name** is one field with string data element. As String is build in sclar type. It dosen't have any nested types.
+ 
+ # **appearsIn** is another field which holds Array of Episode objects.
+ 
+ # ! mark in the filed indicate its a non-null field.
+```

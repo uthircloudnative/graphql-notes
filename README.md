@@ -325,3 +325,129 @@ type Character{
  
  # ! mark in the filed indicate its a non-null field.
 ```
+### Arguments
+
+  - Every filed in GrapgQL object can have zero or more arguments.
+  
+  - All arguments are named and all are passed by name.
+  
+  - We can set default values to arguments.
+
+```
+type Car {
+  id: ID!
+  name: String!
+  length(unit: LengthUnit = METER) : Float
+}
+
+```
+
+### Scalar Types
+
+  - GraphQL object has many fields each fields will resolve to single not nested filed which is scalar field.
+
+  - Each GraphQL filed objects will resolved to a single Scalar field.
+  
+  - GraphQL will support following Scalar types.
+
+      - Int     -> A signed 32 bit integer.
+      - Floar   -> A signed double-precision floating point value.
+      - String  -> A UTF-8 character sequence.
+      - Boolean -> true or false
+      - ID      -> It represents a unique identifier.
+      
+### Enumeration Types
+
+  - GraphQL support Enum types. Its a special kind of scalar that is restricted to a particular set of
+    allowed values.
+    
+  - When enum type is defined for a filed GraphQL validate given filed is has any one of enum defined values.
+    If not throws error.
+    
+```
+enum DaysOftheWeek {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+```
+
+### List and Non-Null
+
+  - GraphQL support List type a list of values are represented by [SOMEFIELDDATA].
+  
+  - With ! we can define Non-Null charactersitic of that filed.
+
+```
+
+type Week {
+  daysOfWeek: [WeekDays]!
+
+}
+
+ # [WeekDays]! -> Indicate GraphQL server always expected to return a value for this filed.
+
+
+```
+
+### Interfaces
+
+  - Interfaces are helpful to define abstract type of objects. When we want to have same fileds at different types of
+    objects then we can define those fileds in interfaces.
+    
+ ```
+ interface Person {
+   id: ID!
+   name: String!
+   age: String!
+   
+ }
+ 
+ type Student implements Person {
+   id: ID!
+   name: String!
+   age: String!
+   school:
+ }
+ 
+ type Employee implements Person {
+   id: ID!
+   name: String!
+   age: String!
+   employeer: String!
+ }
+ ```
+ 
+### Input Types
+
+  - In GraphQL we can pass entire object to GraphQL server using Input types. This is very useful 
+    in case of mutuation where we have to save an object in GraphQL server.
+    
+ ```
+ 
+ input Comment {
+   like: String
+   comment: String!
+ }
+ 
+ mutuation CreateComment($post: Post, $comment: Comment) {
+ 
+  createComment(post: $post, comment: $comment) {
+      like
+      comment
+   }
+   
+  Variables
+  {
+    "post": "MyPost",
+     "comment" : {
+       "like" : "Yes",
+       "comment": "This looks good"
+     }
+  }
+ }
+ ```

@@ -9,7 +9,32 @@
     
   - Every GraphQL service is created by defining type of data it needs to be returned/fetched as fields.
     Then providing a function for each field type.
+   
+## Advantages of GraphQL
+
+   - Single Request
     
+     With a single request we can fetch single or multiple resources from backend. In case of REST we have to use
+     multiple endpoints to fetch more than one resource data.
+     
+   - Customize/Filter responses
+   
+     We can customaize what fileds needs to be included in the response. In case of REST once API is defined it will return 
+     all elements of the response model.
+     
+   - Reduced downstream traffic
+   
+     When we need fetch a huge graph kind of data which consist of nested sub graph structure of data from different resources
+     we can fetch them in single call. Whereas in REST to fetch this kind of data we might make multiple calls by taking parent 
+     response from which get the ID of child and make call to get the child data etc.
+     
+   - Type Safety
+   
+     GraphQL provide type safety as its driven by Schema.
+     
+   - Versioning
+   
+     GraphQL make API versioning easy compare to REST API.
 ## How to Query GraphQL Server
 
 ### Fields
